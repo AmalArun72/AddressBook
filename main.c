@@ -5,10 +5,10 @@
 int main() 
 {
     int choice;
-    AddressBook addressBook;
+    AddressBook addressBook;//datatype,variable
 
-    addressBook.ContactCount = 0;
-    // initialize(&addressBook); // Initialize the address book
+    addressBook.contactCount = 0;
+    initialize(&addressBook); // Initialize the address book
 
     do 
     {
@@ -29,20 +29,20 @@ int main()
                 createContact(&addressBook);
                 break;
             case 2:
-                // searchContact(&addressBook);
+                searchContact(&addressBook);
                 break;
             case 3:
-                // editContact(&addressBook);
+                editContact(&addressBook);
                 break;
             case 4:
-                // deleteContact(&addressBook);
+                deleteContact(&addressBook);
                 break;
             case 5:          
-                // listContacts(&addressBook);
+                listContacts(&addressBook);
                 break;
             case 6:
                 printf("Saving and Exiting...\n");
-                //saveContactsToFile(&addressBook);
+                saveContactsToFile(&addressBook);
                 break;
             default:
                 printf("Invalid choice. Please try again.\n");

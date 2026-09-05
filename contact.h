@@ -23,5 +23,10 @@ void initialize(AddressBook *addressBook);
 void saveContactsToFile(AddressBook *AddressBook);
 
 int validate_name(char *str);
+int validate_phone(char *str);
+int validate_email(char *str);
+int search_by_name(AddressBook *addressBook);
+int search_by_phone(AddressBook *addressBook);
+int search_by_email(AddressBook *addressBook);
 
 #endif
