@@ -279,15 +279,17 @@ int search_by_name(AddressBook *addressBook)
         printf("| S.No | Name               | Phone         | Email                    |\n");
         printf("+------+--------------------+---------------+--------------------------+\n");
 
+        int serial_number = 1;
         for (int i = 0; i < addressBook->contactCount; i++)
         {
             if (names_match(addressBook->contacts[i].name, new_name))
             {
                 printf("| %-4d | %-18s | %-13s | %-24s |\n",
-                       i + 1,
+                       serial_number,
                        addressBook->contacts[i].name,
                        addressBook->contacts[i].phone,
                        addressBook->contacts[i].email);
+                serial_number++;
             }
         }
 
@@ -298,14 +300,24 @@ int search_by_name(AddressBook *addressBook)
         printf("Enter S.No of the contact: ");
         scanf("%d", &choice);
 
-        index = choice - 1;
-
-        if (index < 0 ||
-            index >= addressBook->contactCount ||
-            !names_match(addressBook->contacts[index].name, new_name))
+        if (choice < 1 || choice > count)
         {
             printf("Invalid selection.\n");
             return -1;
+        }
+
+        serial_number = 1;
+        for (int i = 0; i < addressBook->contactCount; i++)
+        {
+            if (names_match(addressBook->contacts[i].name, new_name))
+            {
+                if (serial_number == choice)
+                {
+                    index = i;
+                    break;
+                }
+                serial_number++;
+            }
         }
 
         printf("\nContact found\n");
