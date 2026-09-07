@@ -158,6 +158,34 @@ int is_unique_email(AddressBook *addressBook, char *str)
         return 1;
 }
 
+// Checks whether a phone number is unique while ignoring the contact being edited.
+static int is_unique_phone_for_edit(AddressBook *addressBook, char *str, int edited_index)
+{
+    for (int i = 0; i < addressBook->contactCount; i++)
+    {
+        if (i != edited_index && strcmp(addressBook->contacts[i].phone, str) == 0)
+        {
+            return 0;
+        }
+    }
+
+    return 1;
+}
+
+// Checks whether an email is unique while ignoring the contact being edited.
+static int is_unique_email_for_edit(AddressBook *addressBook, char *str, int edited_index)
+{
+    for (int i = 0; i < addressBook->contactCount; i++)
+    {
+        if (i != edited_index && strcmp(addressBook->contacts[i].email, str) == 0)
+        {
+            return 0;
+        }
+    }
+
+    return 1;
+}
+
 
 // Collects validated contact details and adds the new contact to the address book.
 void createContact(AddressBook *addressBook)
@@ -501,6 +529,11 @@ void editContact(AddressBook *addressBook)
                 {
                     printf("Invalid phone number, give the proper phone number\n");
                 }
+                else if (is_unique_phone_for_edit(addressBook, edit_phone, ind) == 0)
+                {
+                    printf("Phone number already exists. Please enter a different number\n");
+                    res = 0;
+                }
             }while(res==0);//invalid
 
             strcpy(addressBook->contacts[ind].phone,edit_phone);
@@ -525,6 +558,11 @@ void editContact(AddressBook *addressBook)
                 if(res==0)
                 {
                     printf("Invalid email id, give the proper email id\n");
+                }
+                else if (is_unique_email_for_edit(addressBook, edit_email, ind) == 0)
+                {
+                    printf("Email address already exists. Please enter a different email\n");
+                    res = 0;
                 }
             }while(res==0);//invalid
 
