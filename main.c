@@ -2,6 +2,7 @@
 #include "contact.h"
 
 
+// Runs the menu loop that lets the user manage contacts until they choose to exit.
 int main() 
 {
     int choice;

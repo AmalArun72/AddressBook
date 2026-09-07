@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "file.h"
 
+// Writes the contact count and all contact details to the CSV file.
 void saveContactsToFile(AddressBook *addressBook) 
 {
     FILE *fptr = fopen("contacts.csv","w");
@@ -18,6 +19,7 @@ void saveContactsToFile(AddressBook *addressBook)
     fclose(fptr);
 }
 
+// Reads the contact count and contact details from the CSV file into memory.
 void loadContactsFromFile(AddressBook *addressBook)
 {
     FILE *fptr = fopen("contacts.csv","r");
